@@ -28,13 +28,10 @@ class Emoji {
 
   /// Parse Emoji from json
   static Emoji fromJson(Map<String, dynamic> json) {
-    if (json['emojiUnicode'] == null) {
-      json['emojiUnicode'] = '';
-    }
     return Emoji(
       json['emoji'] as String,
       json['name'] as String,
-      json['emojiUnicode'] as String,
+      json['emojiUnicode'] != null ? json['emojiUnicode'] as String : '',
       hasSkinTone:
           json['hasSkinTone'] != null ? json['hasSkinTone'] as bool : false,
     );
