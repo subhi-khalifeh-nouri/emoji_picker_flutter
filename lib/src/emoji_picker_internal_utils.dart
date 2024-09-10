@@ -46,7 +46,12 @@ class EmojiPickerInternalUtils {
       return [];
     }
     var json = jsonDecode(emojiJson) as List<dynamic>;
-    return json.map<RecentEmoji>(RecentEmoji.fromJson).toList();
+    final emojis = json.map<RecentEmoji>(RecentEmoji.fromJson).toList();
+    var finalEmojis = <RecentEmoji>[];
+    for (var item in emojis) {
+      if (item.emoji.emojiUnicode.isNotEmpty) finalEmojis.add(item);
+    }
+    return finalEmojis;
   }
 
   /// Add an emoji to recently used list
